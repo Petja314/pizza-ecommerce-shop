@@ -5,6 +5,7 @@ import { Title } from '@/components/shared/title';
 import { cn } from '@/components/lib/utils';
 import { ProductCard } from '@/components/shared/product-card';
 import { useIntersection } from 'react-use';
+import { useCategoryStore } from '@/store/category';
 
 interface Props {
     title: string;
@@ -21,27 +22,20 @@ const ProductsGroupList: React.FC<Props> = ({
     listClassName,
     categoryId,
 }) => {
+    const setActiveCategoryId = useCategoryStore((state) => state.setActiveId);
     const intersectionRef = React.useRef(null);
-
     const intersection = useIntersection(intersectionRef, {
-        // root: null,
-        // rootMargin: '0px',
-        threshold: 0.4,
+        threshold: 0.2,
     });
-    const [count, setCount] = useState(0);
 
-    useEffect(() => {
-        console.log('Count:', count);
-    }, []); // 'count' is missing in dependencies
-
-    useEffect(() => {
+    React.useEffect(() => {
         if (intersection?.isIntersecting) {
-            console.log(title, categoryId);
+            setActiveCategoryId(categoryId);
         }
-    }, []);
+    }, [categoryId, intersection?.isIntersecting, title]);
 
     return (
-        <div className={className}>
+        <div className={className} id={title} ref={intersectionRef}>
             <Title text={title} size={'lg'} className={'font-extrabold mb-5'} />
 
             <div className={cn('grid grid-cols-3 gap-[50px]', listClassName)}>

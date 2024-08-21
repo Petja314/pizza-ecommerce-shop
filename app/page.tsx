@@ -109,8 +109,6 @@ export default function Home() {
                     </div>
                 </div>
             </Container>
-
-            {/*<div style={{height : "3000px"}}></div>*/}
         </div>
     );
 }

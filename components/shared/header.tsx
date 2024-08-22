@@ -1,12 +1,13 @@
-import React from 'react'
-import Image from 'next/image'
-import { Container } from '@/components/shared/container'
-import { cn } from '@/components/lib/utils'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { ArrowRight, ShoppingCart, User } from 'lucide-react'
+import React from 'react';
+import Image from 'next/image';
+import { Container } from '@/components/shared/container';
+import { cn } from '@/components/lib/utils';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, ShoppingCart, User } from 'lucide-react';
+import { SearchInput } from '@/components/shared/search-input';
 interface Props {
-    className?: string
+    className?: string;
 }
 
 export const Header: React.FC<Props> = ({ className }) => {
@@ -33,6 +34,12 @@ export const Header: React.FC<Props> = ({ className }) => {
                     </div>
                 </Link>
 
+                {/*CENTER*/}
+                <div className={'mx-10 flex-1'}>
+                    <SearchInput />
+                </div>
+
+                {/*RIGHT SIDE*/}
                 <div className={'flex items-center gap-3'}>
                     <Button
                         variant={'outline'}
@@ -69,5 +76,5 @@ export const Header: React.FC<Props> = ({ className }) => {
                 </div>
             </Container>
         </header>
-    )
-}
+    );
+};

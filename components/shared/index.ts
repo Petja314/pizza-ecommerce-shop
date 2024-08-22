@@ -8,3 +8,4 @@ export { Filters } from './filters';
 export { FilterCheckbox } from './filter-checkbox';
 export { CheckboxFiltersGroups } from './checkbox-filters-groups';
 export { ProductCard } from './product-card';
+export { SearchInput } from './search-input';

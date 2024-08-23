@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
-import { cn } from '@/components/lib/utils';
-import { useCategoryStore } from '@/store/category';
+import { cn } from '@/shared/lib/utils';
 import { Category } from '.prisma/client';
+import { useCategoryStore } from '@/shared/store/category';
 
 interface Props {
    variations: Category[];

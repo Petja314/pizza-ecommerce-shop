@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Title } from '@/components/shared/title';
-import { cn } from '@/components/lib/utils';
-import { ProductCard } from '@/components/shared/product-card';
+import { Title } from '@/shared/components/shared/title';
+import { cn } from '@/shared/lib/utils';
+import { ProductCard } from '@/shared/components/shared/product-card';
 import { useIntersection } from 'react-use';
-import { useCategoryStore } from '@/store/category';
+import { useCategoryStore } from '@/shared/store/category';
 
 interface Props {
    title: string;

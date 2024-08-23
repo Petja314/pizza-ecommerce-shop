@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
-import { cn } from '@/components/lib/utils';
+import { cn } from '@/shared/lib/utils';
 import { useRouter } from 'next/navigation';
-import { ChoosePizzaForm, ChooseProductForm } from '@/components/shared';
 import { ProductWithRelations } from '@/@types/prisma';
+import { Dialog, DialogContent } from '@/shared/components/ui/dialog';
+import { ChoosePizzaForm, ChooseProductForm } from '@/shared/components/shared';
 
 interface Props {
    product: ProductWithRelations;

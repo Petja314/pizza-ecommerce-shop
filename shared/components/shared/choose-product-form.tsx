@@ -1,9 +1,8 @@
 import React from 'react';
-import { Product } from '.prisma/client';
-import { ProductImage } from '@/components/shared/product-image';
-import { Title } from '@/components/shared/title';
-import { Button } from '@/components/ui';
-import { cn } from '@/components/lib/utils';
+
+import { Title } from '@/shared/components/shared/title';
+import { Button } from '@/shared/components/ui';
+import { cn } from '@/shared/lib/utils';
 
 interface Props {
    imageUrl: string;

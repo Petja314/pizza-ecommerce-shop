@@ -1,8 +1,8 @@
 import React from 'react';
 import { prisma } from '@/prisma/prisma-client';
 import { notFound } from 'next/navigation';
-import { Container, ProductImage, Title } from '@/components/shared';
-import GroupVariant from '@/components/shared/group-variant';
+import { Container, ProductImage, Title } from '@/shared/components/shared';
+import GroupVariant from '@/shared/components/shared/group-variant';
 
 const ProductPage = async ({ params: { id } }: { params: { id: string } }) => {
    const product = await prisma.product.findFirst({

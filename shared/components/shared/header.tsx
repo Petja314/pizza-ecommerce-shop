@@ -1,12 +1,12 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import { Container } from '@/components/shared/container';
-import { cn } from '@/components/lib/utils';
+import { Container } from '@/shared/components/shared/container';
+import { cn } from '@/shared/lib/utils';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/shared/components/ui/button';
 import { ArrowRight, ShoppingCart, User } from 'lucide-react';
-import { SearchInput } from '@/components/shared/search-input';
+import { SearchInput } from '@/shared/components/shared/search-input';
 interface Props {
    className?: string;
 }

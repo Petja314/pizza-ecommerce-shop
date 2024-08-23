@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { cn } from '@/components/lib/utils';
+import { cn } from '@/shared/lib/utils';
 
 interface Props {
    className?: string;

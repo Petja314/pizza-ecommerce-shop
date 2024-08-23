@@ -1,7 +1,7 @@
 import React from 'react';
 import { prisma } from '@/prisma/prisma-client';
 import { id } from 'postcss-selector-parser';
-import { ChooseProductModal } from '@/components/shared';
+import { ChooseProductModal } from '@/shared/components/shared';
 import { notFound } from 'next/navigation';
 
 const ProductModalPage = async ({

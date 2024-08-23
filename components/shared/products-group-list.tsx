@@ -34,7 +34,6 @@ const ProductsGroupList: React.FC<Props> = ({
       }
    }, [categoryId, intersection?.isIntersecting, title]);
 
-   console.log('items >', items);
    return (
       <div className={className} id={title} ref={intersectionRef}>
          <Title text={title} size={'lg'} className={'font-extrabold mb-5'} />
@@ -43,7 +42,7 @@ const ProductsGroupList: React.FC<Props> = ({
             {items.map((product, index) => (
                <ProductCard
                   key={index}
-                  id={1}
+                  id={product.id}
                   name={product.name}
                   imageUrl={product.imageUrl}
                   price={product.variations[0].price}

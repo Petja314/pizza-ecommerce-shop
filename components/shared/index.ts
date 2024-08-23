@@ -9,3 +9,7 @@ export { FilterCheckbox } from './filter-checkbox';
 export { CheckboxFiltersGroups } from './checkbox-filters-groups';
 export { ProductCard } from './product-card';
 export { SearchInput } from './search-input';
+export { ProductImage } from './product-image';
+export { ChooseProductForm } from './choose-product-form';
+export { ChoosePizzaForm } from './choose-pizza-form';
+export * from './modals';

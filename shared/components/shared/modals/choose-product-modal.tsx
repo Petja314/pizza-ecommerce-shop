@@ -18,6 +18,8 @@ export const ChooseProductModal: React.FC<Props> = ({ className, product }) => {
    const showDialogsHandler = () => {
       router.back();
    };
+
+   console.log('product >', product);
    return (
       <div className={''}>
          <Dialog open={Boolean(product)} onOpenChange={showDialogsHandler}>
@@ -30,11 +32,11 @@ export const ChooseProductModal: React.FC<Props> = ({ className, product }) => {
                {isPizzaForm ? (
                   <ChoosePizzaForm
                      imageUrl={product.imageUrl}
-                     ingredients={[]}
+                     ingridients={product.ingridients}
                      name={product.name}
                      price={20}
-                     textDetails={'25 см, традиционное тесто 25, 380г'}
-                     size={30}
+                     items={product.variations}
+                     productId={product.id}
                   />
                ) : (
                   <ChooseProductForm
@@ -42,7 +44,7 @@ export const ChooseProductModal: React.FC<Props> = ({ className, product }) => {
                      ingredients={[]}
                      name={product.name}
                      price={20}
-                     // textDetails={product.name}
+                     productId={product.id}
                   />
                )}
             </DialogContent>

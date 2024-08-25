@@ -3,6 +3,7 @@ import React from 'react';
 import { Title } from '@/shared/components/shared/title';
 import { Button } from '@/shared/components/ui';
 import { cn } from '@/shared/lib/utils';
+import Link from 'next/link';
 
 interface Props {
    imageUrl: string;
@@ -11,8 +12,8 @@ interface Props {
    items?: any[];
    onClickAdd?: VoidFunction;
    className?: string;
-   textDetails?: string;
    price: number;
+   productId: number;
 }
 
 export const ChooseProductForm: React.FC<Props> = ({
@@ -22,8 +23,8 @@ export const ChooseProductForm: React.FC<Props> = ({
    items,
    onClickAdd,
    className,
-   textDetails = '25 см, традиционное тесто 25, 380г',
    price = 20,
+   productId,
 }) => {
    return (
       <div className={'flex flex-1'}>
@@ -44,7 +45,7 @@ export const ChooseProductForm: React.FC<Props> = ({
 
          <div className={'w-[490px] bg-[#f7f6f5] p-7'}>
             <Title text={name} size={'md'} className={'font-extrabold mb-1'} />
-            <p className={'text-gray-400'}>{textDetails}</p>
+            {/*<p className={'text-gray-400'}>{textDetails}</p>*/}
 
             <Button className={'mt-10 w-[100%] pt-2'}>
                Добавить в корзину за {price} £{' '}

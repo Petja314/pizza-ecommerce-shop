@@ -1,11 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
    Sheet,
-   SheetClose,
    SheetContent,
-   SheetDescription,
    SheetFooter,
    SheetHeader,
    SheetTitle,
@@ -16,6 +14,9 @@ import { Button } from '@/shared/components/ui';
 import { ArrowRight } from 'lucide-react';
 import { CartDrawerItem } from '@/shared/components/shared';
 import { getCartItemsDetails } from '@/shared/lib';
+import { useCartStore } from '@/shared/store/cart';
+import { PizzaSize, PizzaType } from '@/shared/constants/pizza';
+import { updateItemQuantity } from '@/services/cart';
 
 interface Props {
    className?: string;
@@ -25,6 +26,36 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
    className,
    children,
 }) => {
+   const [
+      totalAmount,
+      fetchCartItems,
+      items,
+      updateItemQuantity,
+      removeCartItem,
+   ] = useCartStore((state) => [
+      state.totalAmount,
+      state.fetchCartItems,
+      state.items,
+      state.updateItemQuantity,
+      state.removeCartItem,
+   ]);
+
+   useEffect(() => {
+      fetchCartItems();
+   }, []);
+   const onClickCountButton = (
+      id: number,
+      quantity: number,
+      type: 'plus' | 'minus'
+   ) => {
+      // console.log('onClickCountButton > ', { id, quantity, type });
+      const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
+      updateItemQuantity(id, newQuantity);
+   };
+   const onClickRemove = (id: number) => {
+      removeCartItem(id);
+   };
+
    return (
       <Sheet>
          <SheetTrigger asChild>{children}</SheetTrigger>
@@ -33,22 +64,31 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
          >
             <SheetHeader>
                <SheetTitle>
-                  Items in basket : <span className={'font-bold'}>3</span>
+                  Items in basket :{' '}
+                  <span className={'font-bold'}>{items.length}</span>
                </SheetTitle>
             </SheetHeader>
 
             <div className={'-mx-6 mt-5 overflow-auto flex-1 scrollbar'}>
                <div className={'mb-2'}>
-                  <CartDrawerItem
-                     id={1}
-                     imageUrl={
-                        'https://media.dodostatic.net/image/r:584x584/11EE7D61706D472F9A5D71EB94149304.webp'
-                     }
-                     details={getCartItemsDetails(2, 30, [{ name: 'Сыр ' }])}
-                     name={'Чоризо фреш'}
-                     price={20}
-                     quantity={1}
-                  />
+                  {items.map((item) => (
+                     <CartDrawerItem
+                        onClickRemove={() => onClickRemove(item.id)}
+                        onClickCountButton={(type) =>
+                           onClickCountButton(item.id, item.quantity, type)
+                        }
+                        id={item.id}
+                        imageUrl={item.imageUrl}
+                        details={getCartItemsDetails(
+                           item.ingridients,
+                           item.pizzaType as PizzaType,
+                           item.pizzaSize as PizzaSize
+                        )}
+                        name={item.name}
+                        price={item.price}
+                        quantity={item.quantity}
+                     />
+                  ))}
                </div>
             </div>
 
@@ -64,8 +104,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                         ></div>
                      </span>
                      <span className={'font-bold text-lg'}>
-                        {/*{totalAmmount}*/}
-                        57 £
+                        {totalAmount} £
                      </span>
                   </div>
                   <Link href={'/cart'}>

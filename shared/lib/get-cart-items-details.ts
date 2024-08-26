@@ -1,10 +1,11 @@
 import { mapPizzaType, PizzaSize, PizzaType } from '@/shared/constants/pizza';
 import { Ingridient } from '.prisma/client';
+import { CartStateItem } from '@/shared/lib/get-cart-details';
 
 export const getCartItemsDetails = (
+   ingredients: CartStateItem['ingridients'],
    pizzaType: PizzaType,
-   pizzaSize: PizzaSize,
-   ingredients: Ingridient[]
+   pizzaSize: PizzaSize
 ): string => {
    const details = [];
    if (pizzaSize && pizzaType) {

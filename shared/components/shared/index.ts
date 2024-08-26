@@ -13,4 +13,8 @@ export { ProductImage } from './product-image';
 export { ChooseProductForm } from './choose-product-form';
 export { ChoosePizzaForm } from './choose-pizza-form';
 export { IngredientItems } from './ingredientItems';
+export { CartButton } from './cart/cart-button';
+export { CartDrawer } from './cart/cart-drawer';
+export { CartDrawerItem } from './cart/cart-drawer-item';
+
 export * from './modals';

@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import { getCartDetails } from '@/shared/lib';
 import { Api } from '@/services/api-client';
 import { CartStateItem } from '@/shared/lib/get-cart-details';
-import { updateItemQuantity } from '@/services/cart';
 
 export interface CreateCartItemValues {
    variationsId: number;

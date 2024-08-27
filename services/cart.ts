@@ -2,6 +2,7 @@ import { axiosInstance } from '@/services/instance';
 import { Cart } from '.prisma/client';
 import { ApiRoutes } from '@/services/constants';
 import { CartDto } from '@/services/dto/cart.dto';
+import { CreateCartItemValues } from '@/shared/store/cart';
 
 export const getCart = async (): Promise<Cart> => {
    const { data } = await axiosInstance.get<Cart>(ApiRoutes.GET_CART);
@@ -23,9 +24,9 @@ export const removeCartItem = async (id: number) => {
    return data;
 };
 
-export const addCartItem = async (values: any) => {
-   const { data } = await axiosInstance.put(`${ApiRoutes.GET_CART}`, {
-      values,
+export const addCartItem = async (values: CreateCartItemValues) => {
+   const { data } = await axiosInstance.post<CartDto>(`${ApiRoutes.GET_CART}`, {
+      ...values,
    });
    return data;
 };

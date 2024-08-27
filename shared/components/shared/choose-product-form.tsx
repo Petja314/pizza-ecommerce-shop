@@ -8,23 +8,31 @@ import Link from 'next/link';
 interface Props {
    imageUrl: string;
    name: string;
-   ingredients: any[];
-   items?: any[];
-   onClickAdd?: VoidFunction;
    className?: string;
    price: number;
-   productId: number;
+   onSubmit: VoidFunction;
+   productId: any;
+   loading: any;
 }
+
+/**
+ * From to choose the product
+ * @param imageUrl
+ * @param name
+ * @param className
+ * @param price
+ * @param onSubmit
+ * @constructor
+ */
 
 export const ChooseProductForm: React.FC<Props> = ({
    imageUrl,
    name,
-   ingredients,
-   items,
-   onClickAdd,
    className,
-   price = 20,
+   price,
+   onSubmit,
    productId,
+   loading,
 }) => {
    return (
       <div className={'flex flex-1'}>
@@ -45,9 +53,12 @@ export const ChooseProductForm: React.FC<Props> = ({
 
          <div className={'w-[490px] bg-[#f7f6f5] p-7'}>
             <Title text={name} size={'md'} className={'font-extrabold mb-1'} />
-            {/*<p className={'text-gray-400'}>{textDetails}</p>*/}
 
-            <Button className={'mt-10 w-[100%] pt-2'}>
+            <Button
+               className={'mt-10 w-[100%] pt-2'}
+               onClick={() => onSubmit()}
+               loading={loading}
+            >
                Добавить в корзину за {price} £{' '}
             </Button>
          </div>

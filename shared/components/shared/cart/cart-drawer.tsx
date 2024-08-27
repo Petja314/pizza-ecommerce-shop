@@ -70,8 +70,8 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
             </SheetHeader>
 
             <div className={'-mx-6 mt-5 overflow-auto flex-1 scrollbar'}>
-               <div className={'mb-2'}>
-                  {items.map((item) => (
+               {items.map((item) => (
+                  <div className={'mb-2'} key={item.id}>
                      <CartDrawerItem
                         onClickRemove={() => onClickRemove(item.id)}
                         onClickCountButton={(type) =>
@@ -88,8 +88,8 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                         price={item.price}
                         quantity={item.quantity}
                      />
-                  ))}
-               </div>
+                  </div>
+               ))}
             </div>
 
             <SheetFooter className={'-mx-6 bg-white p-8 '}>

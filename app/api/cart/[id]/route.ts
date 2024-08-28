@@ -35,7 +35,7 @@ export async function PATCH(
    } catch (err) {
       console.error(err);
       return NextResponse.json(
-         { message: 'Error while refreshing the basket' },
+         { message: 'Error while refreshing the checkout' },
          { status: 500 }
       );
    }
@@ -68,7 +68,7 @@ export async function DELETE(
       return NextResponse.json(updatedUserCart);
    } catch (err) {
       return NextResponse.json(
-         { message: 'Error could not delete the product from the basket' },
+         { message: 'Error could not delete the product from the checkout' },
          { status: 500 }
       );
    }

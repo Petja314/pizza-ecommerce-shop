@@ -83,7 +83,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                         height={120}
                      />
                      <Title
-                        text={'Empty basket'}
+                        text={'Empty checkout'}
                         size={'sm'}
                         className={'text-center font-bold my-2'}
                      />

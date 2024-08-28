@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
       return response;
    } catch (err) {
       return NextResponse.json(
-         { message: 'Could not create a basket' },
+         { message: 'Could not create a checkout' },
          { status: 500 }
       );
       console.error(err);

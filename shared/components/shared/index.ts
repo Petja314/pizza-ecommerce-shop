@@ -16,5 +16,6 @@ export { IngredientItems } from './ingredientItems';
 export { CartButton } from './cart/cart-button';
 export { CartDrawer } from './cart/cart-drawer';
 export { CartDrawerItem } from './cart/cart-drawer-item';
+export { ProductForm } from './product-form';
 
 export * from './modals';

@@ -26,6 +26,7 @@ export const getCartDetails = (data: any) => {
       price: calcCartItemTotalAmount(item),
       pizzaSize: item.variations.size,
       pizzaType: item.variations.pizzaType,
+      disabled: false,
       ingridients: item.ingridients.map((ing: any) => ({
          name: ing.name,
          price: ing.price,

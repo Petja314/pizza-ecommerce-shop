@@ -1,10 +1,15 @@
 {
+    "extends": "next/core-web-vitals",
     "plugins": [
         "react-hooks"
     ],
     "rules": {
         // ...
         "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn"
+        "react-hooks/exhaustive-deps": "warn",
+        "import/export": "off",
+        "import/no-unresolved": "off",
+        "@next/next/no-img-element": "off",
+        "jsx-a11y/alt-text": "off"
     }
 }

@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
          where: {
             cartId: userCart.id,
             variationsId: data.variationsId,
-            ingridients: { every: { id: { in: data.ingridients } } },
+            ingridients: { every: { id: { in: data.ingridients } }, some: {} },
          },
       });
       // IF PRODUCT WAS FOUND , MAKING +1
@@ -64,16 +64,18 @@ export async function POST(req: NextRequest) {
                quantity: findCartItem.quantity + 1,
             },
          });
+      } else {
+         await prisma.cartItem.create({
+            data: {
+               cartId: userCart.id,
+               variationsId: data.variationsId,
+               quantity: 1,
+               ingridients: {
+                  connect: data.ingridients?.map((id) => ({ id })),
+               },
+            },
+         });
       }
-
-      await prisma.cartItem.create({
-         data: {
-            cartId: userCart.id,
-            variationsId: data.variationsId,
-            quantity: 1,
-            ingridients: { connect: data.ingridients?.map((id) => ({ id })) },
-         },
-      });
 
       const updatedUserCart = await updateCartTotalAmount(token);
 

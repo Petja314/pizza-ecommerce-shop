@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { Title } from '@/shared/components/shared/title';
 import { Button } from '@/shared/components/ui';
 import { Plus } from 'lucide-react';
+import { Product } from '.prisma/client';
+import { ProductWithRelations } from '@/@types/prisma';
 
 interface Props {
    id: number;
@@ -10,6 +12,7 @@ interface Props {
    price: number;
    imageUrl?: string;
    className?: string;
+   ingridients: Product[];
 }
 
 export const ProductCard: React.FC<Props> = ({
@@ -18,7 +21,9 @@ export const ProductCard: React.FC<Props> = ({
    name,
    price,
    imageUrl,
+   ingridients,
 }) => {
+   console.log('ingridients >', ingridients);
    return (
       <div className={className}>
          <Link href={`/product/${id}`}>
@@ -37,8 +42,9 @@ export const ProductCard: React.FC<Props> = ({
 
          <Title text={name} size={'sm'} className={'mb-1 mt-3 font-bold'} />
          <p className={'text-sm text-gray-400'}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-            amet architecto consequuntur facere.
+            {ingridients.map((item) => (
+               <span key={item.id}>{item.name} , </span>
+            ))}
          </p>
 
          <div className={'flex justify-between items-center mt-4'}>

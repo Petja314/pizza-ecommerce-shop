@@ -26,7 +26,11 @@ export const CartDrawerItem: React.FC<Props> = ({
    onClickRemove,
 }) => {
    return (
-      <div className={cn('flex bg-white p-5 ga-6', className)}>
+      <div
+         className={cn('flex bg-white p-5 ga-6', {
+            'opacity-50 pinter-events-none': disabled,
+         })}
+      >
          <CartItem.Image src={imageUrl} />
          <div className={'flex-1'}>
             <CartItem.Info name={name} details={details} />

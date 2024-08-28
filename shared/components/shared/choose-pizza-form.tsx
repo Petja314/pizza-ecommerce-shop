@@ -63,12 +63,6 @@ export const ChoosePizzaForm: React.FC<Props> = ({
       if (currentItemId) {
          onSubmit(currentItemId, Array.from(selectedIngredients));
       }
-      // onClickAddCart?.();
-      // console.log({
-      //    pizzaSize: size,
-      //    pizzaType: type,
-      //    ingredients: selectedIngredients,
-      // });
    };
 
    // console.log('availablePizzaVariations >', availablePizzaVariations);

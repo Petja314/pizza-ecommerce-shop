@@ -1,25 +1,16 @@
-import {
-   Container,
-   Filters,
-   ProductCard,
-   Title,
-   TopBar,
-} from '@/shared/components/shared';
+import { Container, Filters, Title, TopBar } from '@/shared/components/shared';
 import ProductsGroupList from '@/shared/components/shared/products-group-list';
 import { prisma } from '@/prisma/prisma-client';
+import { Suspense } from 'react';
+import { findPizzas } from '@/shared/lib';
+import { GetSearchParams } from '@/shared/lib/find-pizzas';
 
-export default async function Home() {
-   const categories = await prisma.category.findMany({
-      include: {
-         product: {
-            include: {
-               ingridients: true,
-               variations: true,
-            },
-         },
-      },
-   });
-   console.log(categories);
+export default async function Home({
+   searchParams,
+}: {
+   searchParams: GetSearchParams;
+}) {
+   const categories = await findPizzas(searchParams);
    return (
       <div>
          <Container className={'mt-10'}>
@@ -38,7 +29,9 @@ export default async function Home() {
             <div className={'flex gap-[80px]'}>
                {/*FILTRATION SIDE*/}
                <div className={'w-[250px]'}>
-                  <Filters />
+                  <Suspense>
+                     <Filters />
+                  </Suspense>
                </div>
 
                {/*LIST OF PRODUCTS*/}
@@ -55,11 +48,6 @@ export default async function Home() {
                               />
                            )
                      )}
-                     {/*<ProductsGroupList*/}
-                     {/*   title={'Пиццы'}*/}
-                     {/*   items={product}*/}
-                     {/*   categoryId={1}*/}
-                     {/*/>*/}
                   </div>
                </div>
             </div>

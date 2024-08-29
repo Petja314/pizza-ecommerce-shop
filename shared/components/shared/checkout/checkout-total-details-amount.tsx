@@ -5,7 +5,7 @@ interface Props {
    icon?: ReactNode;
    className?: string;
    title: string;
-   value: string;
+   value: number;
 }
 
 export const CheckoutTotalDetailsAmount: React.FC<Props> = ({

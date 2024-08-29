@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import {
    Sheet,
@@ -16,35 +16,25 @@ import { Button } from '@/shared/components/ui';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { CartDrawerItem, Title } from '@/shared/components/shared';
 import { getCartItemsDetails } from '@/shared/lib';
-import { useCartStore } from '@/shared/store/cart';
 import { PizzaSize, PizzaType } from '@/shared/constants/pizza';
 import { cn } from '@/shared/lib/utils';
+import { useCart } from '@/shared/hooks';
 
 interface Props {
    className?: string;
 }
 
 export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
-   className,
    children,
 }) => {
-   const [
+   const {
       totalAmount,
       fetchCartItems,
       items,
       updateItemQuantity,
       removeCartItem,
-   ] = useCartStore((state) => [
-      state.totalAmount,
-      state.fetchCartItems,
-      state.items,
-      state.updateItemQuantity,
-      state.removeCartItem,
-   ]);
+   } = useCart();
 
-   useEffect(() => {
-      fetchCartItems();
-   }, []);
    const onClickCountButton = (
       id: number,
       quantity: number,
@@ -53,9 +43,6 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
       // console.log('onClickCountButton > ', { id, quantity, type });
       const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
       updateItemQuantity(id, newQuantity);
-   };
-   const onClickRemove = (id: number) => {
-      removeCartItem(id);
    };
 
    return (
@@ -115,7 +102,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                         {items.map((item) => (
                            <div className={'mb-2'} key={item.id}>
                               <CartDrawerItem
-                                 onClickRemove={() => onClickRemove(item.id)}
+                                 onClickRemove={() => removeCartItem(item.id)}
                                  onClickCountButton={(type) =>
                                     onClickCountButton(
                                        item.id,
@@ -158,7 +145,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                                  {totalAmount} £
                               </span>
                            </div>
-                           <Link href={'/cart'}>
+                           <Link href={'/checkout'}>
                               <Button
                                  type={'submit'}
                                  className={'w-full h-12 text-base'}

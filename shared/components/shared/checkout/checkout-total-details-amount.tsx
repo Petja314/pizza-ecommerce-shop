@@ -5,7 +5,7 @@ interface Props {
    icon?: ReactNode;
    className?: string;
    title: string;
-   value: number;
+   value: ReactNode;
 }
 
 export const CheckoutTotalDetailsAmount: React.FC<Props> = ({
@@ -26,7 +26,7 @@ export const CheckoutTotalDetailsAmount: React.FC<Props> = ({
                }
             />
          </span>
-         <span className={'font-bold text-lg'}>{value} £</span>
+         <span className={'font-bold text-lg'}>{value} </span>
       </div>
    );
 };

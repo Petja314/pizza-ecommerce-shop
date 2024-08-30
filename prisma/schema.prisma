@@ -104,6 +104,7 @@ model CartItem {
   ingridients Ingridient[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
+  orderId     Int?
 }
 
 model Order {

@@ -7,3 +7,5 @@ export { calcCartItemTotalAmount } from './calc-cart-item-total-amount';
 export { updateCartTotalAmount } from './update-cart-total-amount';
 export { findOrCreateCart } from './find-or-create-cart';
 export { findPizzas } from './find-pizzas';
+export { sendEmail } from './sendEmail';
+export { basketTotalAmount } from './basket-total-amount';

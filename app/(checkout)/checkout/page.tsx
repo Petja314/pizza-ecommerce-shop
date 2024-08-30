@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Title } from '@/shared/components/shared';
 import { Button } from '@/shared/components/ui';
 import { useCart } from '@/shared/hooks';
@@ -16,6 +16,12 @@ import {
    checkoutFormSchema,
    TCheckoutFormValuesSchema,
 } from '@/shared/components/shared/checkout/schemas/checkout-form-schema';
+import { cn } from '@/shared/lib/utils';
+import { loadStripe } from '@stripe/stripe-js';
+import CheckoutStripeForm from '@/shared/components/shared/checkout/stripe/checkout-stripe-form';
+import { Elements } from '@stripe/react-stripe-js';
+import { createOrder } from '@/app/actions';
+import toast from 'react-hot-toast';
 
 interface Props {
    className?: string;
@@ -28,6 +34,7 @@ const CheckoutPage: React.FC<Props> = ({ className }) => {
       items,
       updateItemQuantity,
       removeCartItem,
+      loading,
    } = useCart();
 
    const onClickCountButton = (
@@ -43,16 +50,37 @@ const CheckoutPage: React.FC<Props> = ({ className }) => {
    const form = useForm<TCheckoutFormValuesSchema>({
       resolver: zodResolver(checkoutFormSchema),
       defaultValues: {
-         email: '',
          firstName: '',
          lastName: '',
+         email: '',
          phone: '',
-         address: '',
+         fullAddress: '',
+         address: {
+            line_1: '',
+            line_2: '',
+            post_town: '',
+            postcode: '',
+            county: '',
+         },
          comment: '',
       },
    });
-   const onSubmit = (data: TCheckoutFormValuesSchema) => {
-      console.log('data >', data);
+   const onSubmit = async (data: TCheckoutFormValuesSchema) => {
+      try {
+         const url = await createOrder(data);
+         toast.success('Order was successfully created!', {
+            icon: '✅',
+         });
+         if (url) {
+            location.href = url;
+         }
+      } catch (err) {
+         toast.error('Order declined , please try again', {
+            icon: '❌',
+         });
+         console.error(err);
+      }
+      // console.log('data >', data);
    };
 
    return (
@@ -73,16 +101,31 @@ const CheckoutPage: React.FC<Props> = ({ className }) => {
                   {/*LEFT SIDE*/}
                   <div className={'flex flex-col gap-10 flex-1 mb-20'}>
                      <CheckoutCart
+                        className={cn(
+                           loading ? 'opacity-70 pointer-events-none' : ''
+                        )}
+                        loading={loading}
                         items={items}
                         removeCartItem={removeCartItem}
                         onClickCountButton={onClickCountButton}
                      />
-                     <CheckoutPersonalForm />
-                     <CheckoutDeliveryForm />
+                     <CheckoutPersonalForm
+                        className={cn(
+                           loading ? 'opacity-70 pointer-events-none' : ''
+                        )}
+                     />
+                     <CheckoutDeliveryForm
+                        className={cn(
+                           loading ? 'opacity-70 pointer-events-none' : ''
+                        )}
+                     />
                   </div>
                   {/*RIGHT SIDE*/}
                   <div className={'w-[450px]'}>
-                     <CheckoutSidebar totalAmount={totalAmount} />
+                     <CheckoutSidebar
+                        totalAmount={totalAmount}
+                        loading={loading}
+                     />
                   </div>
                </div>
             </form>

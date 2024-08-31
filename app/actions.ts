@@ -59,6 +59,7 @@ export const createOrder = async (data: TCheckoutFormValuesSchema) => {
             totalAmount: totalBasketPrice,
             status: OrderStatus.PENDING,
             items: JSON.stringify(userCart.CartItem),
+            paymentLinkUrl: '', // TODO :  REMOVE IT LATER
          },
       });
       //Clearing totalAmount in basket
@@ -79,8 +80,10 @@ export const createOrder = async (data: TCheckoutFormValuesSchema) => {
       const stripeUnitAmount = order.totalAmount * 100;
       const paymentData = await createStripePayment(
          order.fullName,
-         stripeUnitAmount
+         stripeUnitAmount,
+         order.id.toString()
       );
+      console.log('paymentData > ', paymentData);
       if (!paymentData) {
          throw new Error('payment did not come through');
       }
@@ -89,7 +92,8 @@ export const createOrder = async (data: TCheckoutFormValuesSchema) => {
             id: order.id,
          },
          data: {
-            paymentId: paymentData.id,
+            // paymentId: paymentData.metadata,
+            paymentLinkUrl: paymentData.url,
          },
       });
 
@@ -100,7 +104,7 @@ export const createOrder = async (data: TCheckoutFormValuesSchema) => {
          OrderPaymentTemplate({
             orderId: order.id,
             totalAmount: order.totalAmount,
-            paymentUrl: paymentData.url,
+            paymentUrl: paymentData.url.toString(),
          })
       );
 

@@ -28,6 +28,8 @@ interface Props {
 }
 
 const CheckoutPage: React.FC<Props> = ({ className }) => {
+   const [submitting, setSubmitting] = React.useState(false);
+
    const {
       totalAmount,
       fetchCartItems,
@@ -67,14 +69,17 @@ const CheckoutPage: React.FC<Props> = ({ className }) => {
    });
    const onSubmit = async (data: TCheckoutFormValuesSchema) => {
       try {
+         setSubmitting(true);
          const url = await createOrder(data);
-         toast.success('Order was successfully created!', {
+         toast.success('Order created! 📝 Going to the payment page...', {
             icon: '✅',
          });
          if (url) {
             location.href = url;
          }
       } catch (err) {
+         setSubmitting(false);
+
          toast.error('Order declined , please try again', {
             icon: '❌',
          });
@@ -124,7 +129,7 @@ const CheckoutPage: React.FC<Props> = ({ className }) => {
                   <div className={'w-[450px]'}>
                      <CheckoutSidebar
                         totalAmount={totalAmount}
-                        loading={loading}
+                        loading={loading || submitting}
                      />
                   </div>
                </div>

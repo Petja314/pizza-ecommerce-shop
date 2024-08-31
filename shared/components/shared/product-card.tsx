@@ -23,7 +23,6 @@ export const ProductCard: React.FC<Props> = ({
    imageUrl,
    ingridients,
 }) => {
-   console.log('ingridients >', ingridients);
    return (
       <div className={className}>
          <Link href={`/product/${id}`}>

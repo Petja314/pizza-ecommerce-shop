@@ -6,7 +6,7 @@ const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY as string);
 export async function POST(req: NextRequest) {
    console.log('POST REQUEST STRIPE');
    try {
-      const { productName, unitAmount, currency } = await req.json();
+      const { productName, unitAmount, currency, metadata } = await req.json();
 
       // Ensure productName is provided
       if (!productName) {
@@ -16,6 +16,7 @@ export async function POST(req: NextRequest) {
       // Create a product
       const product = await stripe.products.create({
          name: productName, // The name parameter is mandatory
+         metadata: metadata,
       });
 
       // Create a price for the product
@@ -23,6 +24,7 @@ export async function POST(req: NextRequest) {
          product: product.id,
          unit_amount: unitAmount,
          currency: currency || 'gbp',
+         metadata: metadata,
       });
 
       // Create a payment link using the priceId
@@ -33,9 +35,13 @@ export async function POST(req: NextRequest) {
                quantity: 1,
             },
          ],
+         metadata: metadata,
       });
 
-      return NextResponse.json({ url: paymentLink.url });
+      return NextResponse.json({
+         url: paymentLink.url,
+         metadata: metadata.orderId,
+      });
    } catch (error) {
       console.error('Stripe payment failed:', error);
       return NextResponse.json(

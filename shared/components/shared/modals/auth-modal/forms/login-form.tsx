@@ -3,6 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import {
    formLoginSchema,
    TFormLoginValues,
+   TFormRegisterValues,
 } from '@/shared/components/shared/modals/auth-modal/forms/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Title } from '@/shared/components/shared';

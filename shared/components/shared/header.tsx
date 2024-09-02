@@ -28,17 +28,29 @@ export const Header: React.FC<Props> = ({
 }) => {
    const [openAuthModal, setOpenAuthModal] = useState(false);
    const { data: session } = useSession();
-   console.log('session >', session);
+   // console.log('session >', session);
    const searchParams = useSearchParams();
    const router = useRouter();
+
    useEffect(() => {
       if (searchParams.has('paid')) {
          setTimeout(() => {
-            toast.success('Order successfully has been paid!');
+            toast.success('Order successfully has been paid!', {
+               icon: '✅',
+            });
          }, 500);
+         router.push('/');
       }
-      router.push('/');
+      if (searchParams.has('verified')) {
+         setTimeout(() => {
+            toast.success('Account was successfully confirmed', {
+               icon: '✅',
+            });
+         }, 500);
+         router.push('/');
+      }
    }, []);
+
    return (
       <header className={cn('border border-b', className)}>
          <Container className="flex items-center justify-between py-8">

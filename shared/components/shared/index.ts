@@ -20,5 +20,6 @@ export { ProductForm } from './product-form';
 export { WhiteBlock } from './white-block';
 export { InfoBlock } from './info-block';
 export { CheckoutTotalDetailsAmount } from './checkout/checkout-total-details-amount';
+export { Stories } from './stories';
 export * from './auth-button/auth-button';
 export * from './modals';

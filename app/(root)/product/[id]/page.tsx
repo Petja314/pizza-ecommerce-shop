@@ -23,6 +23,8 @@ const ProductPage = async ({ params: { id } }: { params: { id: string } }) => {
       },
    });
 
+   // console.log('product >', product);
+
    if (!product) {
       return notFound();
    }

@@ -1,16 +1,13 @@
 import { create } from 'zustand';
 import { Category } from '.prisma/client';
+import { categories } from '@/prisma/constants';
 
 interface State {
-   activeId: number;
-   setActiveId: (activeId: number) => void;
    sortRankCategory: Category[];
    setSortRankCategory: (rank: Category[]) => void;
 }
 
-export const useCategoryStore = create<State>()((set) => ({
-   activeId: 1,
-   setActiveId: (activeId: number) => set({ activeId }),
+export const useCategoryRankStore = create<State>()((set) => ({
    sortRankCategory: [],
    setSortRankCategory: (categories: Category[]) =>
       set({ sortRankCategory: categories }),

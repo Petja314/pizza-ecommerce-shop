@@ -1,16 +1,13 @@
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import {
-   formLoginSchema,
    formRegisterSchema,
-   TFormLoginValues,
    TFormRegisterValues,
 } from '@/shared/components/shared/modals/auth-modal/forms/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Title } from '@/shared/components/shared';
 import { FormInput } from '@/shared/components/shared/form';
 import { Button } from '@/shared/components/ui';
-import { useSession, signIn, signOut } from 'next-auth/react';
 import toast from 'react-hot-toast';
 import { registerUser } from '@/app/actions';
 

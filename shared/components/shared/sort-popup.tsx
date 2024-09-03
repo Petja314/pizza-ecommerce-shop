@@ -1,14 +1,25 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import { cn } from '@/shared/lib/utils';
 import { ArrowUpDown } from 'lucide-react';
+import { Category } from '.prisma/client';
 
 interface Props {
+   sortedCategories: Category[];
    className?: string;
 }
 
-export const SortPopup: React.FC<Props> = ({ className }) => {
+export const SortPopup: React.FC<Props> = ({ className, sortedCategories }) => {
+   const sortByRating = () => {
+      // debugger;
+      sortedCategories.sort(
+         (a, b) => (a.rating as number) - (b.rating as number)
+      );
+   };
+   // console.log('categories > ', categories);
    return (
       <div
+         onClick={sortByRating}
          className={cn(
             'inline-flex  items-center gap-1 bg-gray-50 px-5 h-[52px] rounded-2xl cursor-pointer',
             className

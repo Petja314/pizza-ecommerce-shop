@@ -1,14 +1,9 @@
-import {
-   Container,
-   Filters,
-   Title,
-   TopBar,
-   Stories,
-} from '@/shared/components/shared';
+import { Container, Filters, Title, TopBar } from '@/shared/components/shared';
 import ProductsGroupList from '@/shared/components/shared/products-group-list';
 import { Suspense } from 'react';
 import { findPizzas } from '@/shared/lib';
 import { GetSearchParams } from '@/shared/lib/find-pizzas';
+import { Button } from '@/shared/components/ui';
 
 export default async function Home({
    searchParams,
@@ -16,6 +11,8 @@ export default async function Home({
    searchParams: GetSearchParams;
 }) {
    const categories = await findPizzas(searchParams);
+
+   console.log('cat', categories);
    return (
       <div>
          <Container className={'mt-10'}>
@@ -27,10 +24,11 @@ export default async function Home({
          </Container>
 
          <TopBar
+            sortedCategories={categories}
             variations={categories.filter((cat) => cat.product.length > 0)}
          />
 
-         <Stories />
+         {/*<Stories />*/}
 
          <Container className={'pb-14 mt-10'}>
             <div className={'flex gap-[80px]'}>
@@ -48,6 +46,7 @@ export default async function Home({
                         (cat, index) =>
                            cat.product.length > 0 && (
                               <ProductsGroupList
+                                 categories={categories}
                                  key={cat.id}
                                  title={cat.name}
                                  items={cat.product}

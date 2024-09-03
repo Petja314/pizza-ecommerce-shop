@@ -1,18 +1,23 @@
 export const categories = [
    {
       name: 'Pizza',
+      rating: 1,
    },
    {
       name: 'Breakfast',
+      rating: 4,
    },
    {
       name: 'Snacks',
+      rating: 2,
    },
    {
       name: 'Cocktails',
+      rating: 3,
    },
    {
       name: 'Drinks',
+      rating: 5,
    },
 ];
 

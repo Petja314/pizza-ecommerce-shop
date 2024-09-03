@@ -6,8 +6,10 @@ import { cn } from '@/shared/lib/utils';
 import { ProductCard } from '@/shared/components/shared/product-card';
 import { useIntersection } from 'react-use';
 import { useCategoryStore } from '@/shared/store/category';
+import { Category } from '.prisma/client';
 
 interface Props {
+   categories: Category[];
    title: string;
    items: any[];
    listClassName?: string;
@@ -21,6 +23,7 @@ const ProductsGroupList: React.FC<Props> = ({
    items,
    listClassName,
    categoryId,
+   categories,
 }) => {
    const setActiveCategoryId = useCategoryStore((state) => state.setActiveId);
    const intersectionRef = React.useRef(null);
@@ -34,6 +37,7 @@ const ProductsGroupList: React.FC<Props> = ({
       }
    }, [categoryId, intersection?.isIntersecting, title]);
 
+   // console.log('items', items);
    return (
       <div className={className} id={title} ref={intersectionRef}>
          <Title text={title} size={'lg'} className={'font-extrabold mb-5'} />

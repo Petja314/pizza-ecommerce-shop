@@ -3,7 +3,7 @@ import qs from 'qs';
 import { useRouter } from 'next/navigation';
 import { Filters } from '@/shared/hooks/useFilters';
 
-export const useQueryFilters = (filters: Filters) => {
+export const useQueryFilters = (filters: Filters, sortBy: string) => {
    const isMounted = useRef(false);
    const router = useRouter();
 
@@ -15,6 +15,7 @@ export const useQueryFilters = (filters: Filters) => {
             pizzaTypes: Array.from(filters.pizzaTypes),
             sizes: Array.from(filters.sizes),
             ingredients: Array.from(filters.selectedIngredients),
+            sortBy,
          };
 
          const queryFilterParams = qs.stringify(params, {
@@ -23,5 +24,12 @@ export const useQueryFilters = (filters: Filters) => {
          router.push(`?${queryFilterParams}`, { scroll: false });
       }
       isMounted.current = true;
-   }, []);
+   }, [
+      filters.pizzaTypes,
+      filters.prices,
+      filters.selectedIngredients,
+      filters.sizes,
+      sortBy,
+      router,
+   ]);
 };

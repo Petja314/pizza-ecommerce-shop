@@ -2,9 +2,8 @@
 import React from 'react';
 import { ChoosePizzaForm } from '@/shared/components/shared/choose-pizza-form';
 import { ChooseProductForm } from '@/shared/components/shared/choose-product-form';
-import { useRouter } from 'next/navigation';
 import { useCartStore } from '@/shared/store/cart';
-import { ProductWithRelations } from '@/@types/prisma';
+import { ProductCategory, ProductWithRelations } from '@/@types/prisma';
 import toast from 'react-hot-toast';
 
 interface Props {
@@ -22,7 +21,6 @@ export const ProductForm: React.FC<Props> = ({
       state.loading,
       state.addCartItem,
    ]);
-
    const firstItem = product.variations[0];
    const isPizzaForm = Boolean(firstItem.pizzaType);
 
@@ -53,6 +51,7 @@ export const ProductForm: React.FC<Props> = ({
             productId={product.id}
             onSubmit={onSubmit}
             loading={loading}
+            allProducts={product?.category?.product as ProductCategory[]}
          />
       );
    }
@@ -64,6 +63,7 @@ export const ProductForm: React.FC<Props> = ({
          price={firstItem.price}
          productId={product.id}
          loading={loading}
+         allProducts={product?.category?.product as ProductCategory[]}
       />
    );
 };

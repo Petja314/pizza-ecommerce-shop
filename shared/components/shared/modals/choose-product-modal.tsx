@@ -17,6 +17,8 @@ export const ChooseProductModal: React.FC<Props> = ({ className, product }) => {
       router.back();
    };
 
+   // console.log('product >', product);
+
    return (
       <div className={''}>
          <Dialog open={Boolean(product)} onOpenChange={backPageHandler}>

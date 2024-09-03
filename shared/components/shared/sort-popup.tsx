@@ -5,16 +5,15 @@ import { ArrowUpDown } from 'lucide-react';
 import { Category } from '.prisma/client';
 
 interface Props {
-   sortedCategories: Category[];
    className?: string;
 }
 
-export const SortPopup: React.FC<Props> = ({ className, sortedCategories }) => {
+export const SortPopup: React.FC<Props> = ({ className }) => {
    const sortByRating = () => {
       // debugger;
-      sortedCategories.sort(
-         (a, b) => (a.rating as number) - (b.rating as number)
-      );
+      // sortedCategories.sort(
+      //    (a, b) => (a.rating as number) - (b.rating as number)
+      // );
    };
    // console.log('categories > ', categories);
    return (

@@ -8,14 +8,9 @@ import { Category } from '.prisma/client';
 interface Props {
    variations: Category[];
    className?: string;
-   sortedCategories: Category[];
 }
 
-export const TopBar: React.FC<Props> = ({
-   className,
-   variations,
-   sortedCategories,
-}) => {
+export const TopBar: React.FC<Props> = ({ className, variations }) => {
    return (
       <div
          className={cn(
@@ -25,7 +20,7 @@ export const TopBar: React.FC<Props> = ({
       >
          <Container className={'flex items-center justify-between '}>
             <Categories variations={variations} />
-            {/*<SortPopup sortedCategories={sortedCategories} />*/}
+            <SortPopup />
          </Container>
       </div>
    );

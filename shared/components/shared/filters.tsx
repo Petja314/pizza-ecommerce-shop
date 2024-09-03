@@ -14,7 +14,7 @@ interface Props {
 export const Filters: React.FC<Props> = ({ className }) => {
    const { ingredients, loading } = useIngredients();
    const filters = useFilters();
-   useQueryFilters(filters, '');
+   useQueryFilters(filters);
 
    const items = ingredients.map((item) => ({
       value: String(item.id),

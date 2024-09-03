@@ -5,17 +5,20 @@ import { ChooseProductForm } from '@/shared/components/shared/choose-product-for
 import { useCartStore } from '@/shared/store/cart';
 import { ProductCategory, ProductWithRelations } from '@/@types/prisma';
 import toast from 'react-hot-toast';
+import { useSearchParams } from 'next/navigation';
 
 interface Props {
    className?: string;
    product: ProductWithRelations;
    onSubmit?: () => void;
+   isProductPage: boolean;
 }
 
 export const ProductForm: React.FC<Props> = ({
    className,
    product,
    onSubmit: _onSubmit,
+   isProductPage,
 }) => {
    const [loading, addCartItem] = useCartStore((state) => [
       state.loading,
@@ -51,7 +54,7 @@ export const ProductForm: React.FC<Props> = ({
             productId={product.id}
             onSubmit={onSubmit}
             loading={loading}
-            allProducts={product?.category?.product as ProductCategory[]}
+            isProductPage={isProductPage}
          />
       );
    }
@@ -63,7 +66,7 @@ export const ProductForm: React.FC<Props> = ({
          price={firstItem.price}
          productId={product.id}
          loading={loading}
-         allProducts={product?.category?.product as ProductCategory[]}
+         isProductPage={isProductPage}
       />
    );
 };

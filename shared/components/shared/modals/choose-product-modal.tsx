@@ -13,11 +13,10 @@ interface Props {
 
 export const ChooseProductModal: React.FC<Props> = ({ className, product }) => {
    const router = useRouter();
+
    const backPageHandler = () => {
       router.back();
    };
-
-   // console.log('product >', product);
 
    return (
       <div className={''}>

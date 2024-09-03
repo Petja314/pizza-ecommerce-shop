@@ -2,6 +2,7 @@ import React from 'react';
 import { prisma } from '@/prisma/prisma-client';
 import { notFound } from 'next/navigation';
 import { Container, ProductForm } from '@/shared/components/shared';
+import RecommendedProduct from '@/shared/components/shared/recommended product/recommended-product';
 
 const ProductPage = async ({ params: { id } }: { params: { id: string } }) => {
    const product = await prisma.product.findFirst({
@@ -31,7 +32,11 @@ const ProductPage = async ({ params: { id } }: { params: { id: string } }) => {
 
    return (
       <Container className={''}>
-         <ProductForm product={product} />
+         <p className={'mt-10 text-gray-500'}>Product / {product.name}</p>
+
+         <ProductForm product={product} isProductPage={true} />
+
+         <RecommendedProduct product={product} />
       </Container>
    );
 };

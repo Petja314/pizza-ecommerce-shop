@@ -3,7 +3,6 @@ import ProductsGroupList from '@/shared/components/shared/products-group-list';
 import { Suspense } from 'react';
 import { findPizzas } from '@/shared/lib';
 import { GetSearchParams } from '@/shared/lib/find-pizzas';
-import { Button } from '@/shared/components/ui';
 
 export default async function Home({
    searchParams,
@@ -12,7 +11,7 @@ export default async function Home({
 }) {
    const categories = await findPizzas(searchParams);
 
-   console.log('cat', categories);
+   // console.log('cat', categories);
    return (
       <div>
          <Container className={'mt-10'}>
@@ -24,7 +23,6 @@ export default async function Home({
          </Container>
 
          <TopBar
-            sortedCategories={categories}
             variations={categories.filter((cat) => cat.product.length > 0)}
          />
 

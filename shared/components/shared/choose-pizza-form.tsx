@@ -11,7 +11,8 @@ import { getPizzaDetails } from '@/shared/lib';
 import { usePizzaOptions } from '@/shared/hooks';
 import { Container } from '@/shared/components/shared/container';
 import RecommendedProduct from '@/shared/components/shared/recommended product/recommended-product';
-import { ProductCategory } from '@/@types/prisma';
+import { ProductCategory, ProductWithRelations } from '@/@types/prisma';
+import { cn } from '@/shared/lib/utils';
 
 interface Props {
    imageUrl: string;
@@ -24,7 +25,7 @@ interface Props {
    productId: number;
    onSubmit: (variationsId: number, ingiridients: number[]) => void;
    loading: any;
-   allProducts: ProductCategory[];
+   isProductPage: boolean;
 }
 
 /**
@@ -44,7 +45,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
    onClickAddCart,
    onSubmit,
    loading,
-   allProducts,
+   isProductPage,
 }) => {
    const {
       size,
@@ -70,36 +71,43 @@ export const ChoosePizzaForm: React.FC<Props> = ({
       }
    };
 
-   // console.log('availablePizzaVariations >', availablePizzaVariations);
-   // console.log('availablePizzaSizes >', availablePizzaSizes);
-   // console.log('items >', items);
-   // console.log('pizzaPrice >', pizzaPrice);
    return (
-      <Container>
-         <p className={'mt-10 text-gray-500'}>Product / {name}</p>
-
-         <div className={'flex justify-between mt-10'}>
+      <>
+         <div
+            className={cn(
+               '',
+               isProductPage ? 'flex justify-between ' : 'flex flex-1'
+            )}
+         >
             <div
-               // className={'flex justify-center p-6 bg-secondary rounded-lg h-[260px]'}
-               className={
-                  'flex justify-center p-6 bg-[#FFF8EE] rounded-lg h-[570px] w-[570px]'
-               }
+               className={cn(
+                  '',
+                  isProductPage
+                     ? 'flex justify-center p-6 bg-secondary rounded-lg h-[570px] w-[570px]'
+                     : 'flex items-center justify-center flex-1 relative w-full'
+               )}
             >
                <ProductImage
                   imageUrl={imageUrl}
-                  size={40}
+                  size={size}
                   alt={`pizza-${name}`}
                ></ProductImage>
             </div>
 
-            <div className={'w-[490px] h-[570px]'}>
+            <div
+               className={cn(
+                  '',
+                  isProductPage
+                     ? ''
+                     : 'w-[490px] bg-[#f7f6f5] p-7 border rounded-2xl'
+               )}
+            >
                <Title
                   text={name}
                   size={'md'}
                   className={'font-extrabold mb-1'}
                />
                <p className={'text-gray-400'}>{textDetails}</p>
-
                <div className={'flex flex-col gap-5 mt-5'}>
                   <GroupVariant
                      items={availablePizzasSizes}
@@ -112,10 +120,9 @@ export const ChoosePizzaForm: React.FC<Props> = ({
                      onClick={(value) => setType(Number(value) as PizzaType)}
                   />
                </div>
-
                <div
                   className={
-                     'bg-gray-50 p-5 rounded-md h-[300px] overflow-auto scrollbar mt-10'
+                     'bg-gray-50 p-5 rounded-md h-[420px] overflow-auto scrollbar mt-10'
                   }
                >
                   <div className={'grid grid-cols-3 gap-3'}>
@@ -133,7 +140,6 @@ export const ChoosePizzaForm: React.FC<Props> = ({
                      ))}
                   </div>
                </div>
-
                <Button
                   className={'mt-10 w-[100%] pt-2'}
                   onClick={handleClickAdd}
@@ -143,8 +149,6 @@ export const ChoosePizzaForm: React.FC<Props> = ({
                </Button>
             </div>
          </div>
-
-         <RecommendedProduct allProducts={allProducts} />
-      </Container>
+      </>
    );
 };

@@ -4,8 +4,6 @@ import { Title } from '@/shared/components/shared/title';
 import { Button } from '@/shared/components/ui';
 import { cn } from '@/shared/lib/utils';
 import { Container } from '@/shared/components/shared/container';
-import RecommendedProduct from '@/shared/components/shared/recommended product/recommended-product';
-import { ProductCategory } from '@/@types/prisma';
 
 interface Props {
    imageUrl: string;
@@ -15,7 +13,7 @@ interface Props {
    onSubmit: VoidFunction;
    productId: any;
    loading: any;
-   allProducts: ProductCategory[];
+   isProductPage: boolean;
 }
 
 /**
@@ -36,12 +34,10 @@ export const ChooseProductForm: React.FC<Props> = ({
    onSubmit,
    productId,
    loading,
-   allProducts,
+   isProductPage,
 }) => {
    return (
       <Container>
-         <p className={'mt-10 text-gray-500'}>Product / {name}</p>
-
          <div className={'flex flex-1 mt-10'}>
             <div
                className={cn(
@@ -57,8 +53,7 @@ export const ChooseProductForm: React.FC<Props> = ({
                   )}
                />
             </div>
-
-            <div className={'w-[490px] bg-[#f7f6f5] p-7'}>
+            <div className={'w-[490px] bg-[#f7f6f5] p-7 border rounded-2xl'}>
                <Title
                   text={name}
                   size={'md'}
@@ -74,8 +69,6 @@ export const ChooseProductForm: React.FC<Props> = ({
                </Button>
             </div>
          </div>
-
-         <RecommendedProduct allProducts={allProducts} />
       </Container>
    );
 };

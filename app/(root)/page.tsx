@@ -1,8 +1,18 @@
-import { Container, Filters, Title, TopBar } from '@/shared/components/shared';
+import {
+   CartDrawer,
+   Container,
+   Filters,
+   FiltersMobileView,
+   Stories,
+   Title,
+   TopBar,
+} from '@/shared/components/shared';
 import ProductsGroupList from '@/shared/components/shared/products-group-list';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { findPizzas } from '@/shared/lib';
 import { GetSearchParams } from '@/shared/lib/find-pizzas';
+import { Button } from '@/shared/components/ui';
+import { SlidersHorizontal } from 'lucide-react';
 
 export default async function Home({
    searchParams,
@@ -11,14 +21,13 @@ export default async function Home({
 }) {
    const categories = await findPizzas(searchParams);
 
-   // console.log('cat', categories);
    return (
-      <div>
-         <Container className={'mt-10'}>
+      <div className={''}>
+         <Container className={'mt-10 pl-5 pr-5'}>
             <Title
-               text={'Все пиццы'}
+               text={'All products'}
                size={'lg'}
-               className={'font-extrabold'}
+               className={'font-extrabold max-md:text-lg'}
             ></Title>
          </Container>
 
@@ -26,17 +35,30 @@ export default async function Home({
             variations={categories.filter((cat) => cat.product.length > 0)}
          />
 
-         {/*<Stories />*/}
+         <Stories className={''} />
 
-         <Container className={'pb-14 mt-10'}>
+         {/*FILTER MOBILE VERSION*/}
+         <div className={'max-lg:flex lg:hidden pl-5 pr-5'}>
+            <Suspense>
+               <FiltersMobileView>
+                  <div
+                     className={'flex items-center gap-2 max-lg:cursor-pointer'}
+                  >
+                     <SlidersHorizontal />
+                     <Title text={'Filters'} className={'font-bold'}></Title>
+                  </div>
+               </FiltersMobileView>
+            </Suspense>
+         </div>
+
+         <Container className={'pb-14 mt-10 pl-5 pr-5'}>
             <div className={'flex gap-[80px]'}>
                {/*FILTRATION SIDE*/}
-               <div className={'w-[250px]'}>
+               <div className={'w-[200px] max-lg:hidden'}>
                   <Suspense>
                      <Filters />
                   </Suspense>
                </div>
-
                {/*LIST OF PRODUCTS*/}
                <div className={'flex-1'}>
                   <div className={'flex flex-col gap-16'}>

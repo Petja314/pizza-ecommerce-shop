@@ -29,7 +29,7 @@ export const CheckboxFiltersGroups: React.FC<Props> = ({
    items,
    defaultItems,
    limit = 6,
-   searchInputPlaceholder = 'Поиск...',
+   searchInputPlaceholder = 'Search...',
    onClickCheckbox,
    defaultValue,
    loading,
@@ -101,7 +101,7 @@ export const CheckboxFiltersGroups: React.FC<Props> = ({
                      onClick={() => setShowAll(!showAll)}
                      className={'text-primary mt-4'}
                   >
-                     {showAll ? 'Скрыть' : ' +Показать все'}
+                     {showAll ? 'Hide' : ' +Show all'}
                   </button>
                </div>
             )}

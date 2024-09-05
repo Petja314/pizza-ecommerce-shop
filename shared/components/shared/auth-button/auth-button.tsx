@@ -21,13 +21,13 @@ export const AuthButton: React.FC<Props> = ({ className, onClickSignIn }) => {
                className="flex items-center gap-1"
             >
                <User size={16} />
-               Войти
+               <span className={'max-sm:hidden'}>Sign In</span>
             </Button>
          ) : (
             <Link href="/profile">
                <Button variant="secondary" className="flex items-center gap-2">
                   <CircleUser size={18} />
-                  Профиль
+                  <span className={'max-sm:hidden'}>Profile</span>
                </Button>
             </Link>
          )}

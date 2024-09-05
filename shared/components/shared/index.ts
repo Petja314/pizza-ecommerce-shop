@@ -5,6 +5,7 @@ export { Categories } from './categories';
 export { SortPopup } from './sort-popup';
 export { TopBar } from './top-bar';
 export { Filters } from './filters';
+export { FiltersMobileView } from './filters-mobile-view';
 export { FilterCheckbox } from './filter-checkbox';
 export { CheckboxFiltersGroups } from './checkbox-filters-groups';
 export { ProductCard } from './product-card';

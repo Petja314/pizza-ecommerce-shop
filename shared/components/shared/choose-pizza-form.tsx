@@ -75,13 +75,13 @@ export const ChoosePizzaForm: React.FC<Props> = ({
       <>
          <div
             className={cn(
-               '',
+               'max-lg:flex max-lg:flex-col items-center max-h-full scrollbar overflow-auto ',
                isProductPage ? 'flex justify-between ' : 'flex flex-1'
             )}
          >
             <div
                className={cn(
-                  '',
+                  'max-lg:pt-4 pb-4',
                   isProductPage
                      ? 'flex justify-center p-6 bg-secondary rounded-lg h-[570px] w-[570px]'
                      : 'flex items-center justify-center flex-1 relative w-full'
@@ -96,7 +96,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
 
             <div
                className={cn(
-                  '',
+                  'max-lg:w-full scroll scroll-auto',
                   isProductPage
                      ? ''
                      : 'w-[490px] bg-[#f7f6f5] p-7 border rounded-2xl'
@@ -125,7 +125,11 @@ export const ChoosePizzaForm: React.FC<Props> = ({
                      'bg-gray-50 p-5 rounded-md h-[420px] overflow-auto scrollbar mt-10'
                   }
                >
-                  <div className={'grid grid-cols-3 gap-3'}>
+                  <div
+                     className={
+                        'grid grid-cols-3 gap-3 max-sm:flex flex-wrap justify-around'
+                     }
+                  >
                      {ingridients.map((ingridients, index) => (
                         <IngredientItems
                            key={ingridients.id}

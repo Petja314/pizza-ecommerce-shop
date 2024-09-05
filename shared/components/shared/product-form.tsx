@@ -3,9 +3,8 @@ import React from 'react';
 import { ChoosePizzaForm } from '@/shared/components/shared/choose-pizza-form';
 import { ChooseProductForm } from '@/shared/components/shared/choose-product-form';
 import { useCartStore } from '@/shared/store/cart';
-import { ProductCategory, ProductWithRelations } from '@/@types/prisma';
+import { ProductWithRelations } from '@/@types/prisma';
 import toast from 'react-hot-toast';
-import { useSearchParams } from 'next/navigation';
 
 interface Props {
    className?: string;

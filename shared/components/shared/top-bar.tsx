@@ -18,9 +18,9 @@ export const TopBar: React.FC<Props> = ({ className, variations }) => {
             className
          )}
       >
-         <Container className={'flex items-center justify-between '}>
+         <Container className={'flex items-center justify-between'}>
             <Categories variations={variations} />
-            <SortPopup />
+            {/*<SortPopup />*/}
          </Container>
       </div>
    );

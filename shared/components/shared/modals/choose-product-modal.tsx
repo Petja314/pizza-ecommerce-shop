@@ -9,9 +9,14 @@ import { ProductForm } from '@/shared/components/shared';
 interface Props {
    product: ProductWithRelations;
    className?: string;
+   isProductPage: boolean; //not exist
 }
 
-export const ChooseProductModal: React.FC<Props> = ({ className, product }) => {
+export const ChooseProductModal: React.FC<Props> = ({
+   className,
+   product,
+   isProductPage,
+}) => {
    const router = useRouter();
 
    const backPageHandler = () => {
@@ -23,11 +28,15 @@ export const ChooseProductModal: React.FC<Props> = ({ className, product }) => {
          <Dialog open={Boolean(product)} onOpenChange={backPageHandler}>
             <DialogContent
                className={cn(
-                  'p-0 w-[1060px] max-w-[1060px] min-h-[500px] bg-white overflow-hidden',
+                  ' p-0 w-[1060px] max-w-[1060px] min-h-[500px] bg-white overflow-hidden max-lg:w-full max-lg:h-full',
                   className
                )}
             >
-               <ProductForm product={product} onSubmit={backPageHandler} />
+               <ProductForm
+                  isProductPage={isProductPage}
+                  product={product}
+                  onSubmit={backPageHandler}
+               />
             </DialogContent>
          </Dialog>
       </div>

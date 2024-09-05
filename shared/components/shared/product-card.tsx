@@ -5,6 +5,7 @@ import { Button } from '@/shared/components/ui';
 import { Plus } from 'lucide-react';
 import { Product } from '.prisma/client';
 import { ProductWithRelations } from '@/@types/prisma';
+import { cn } from '@/shared/lib/utils';
 
 interface Props {
    id: number;
@@ -24,17 +25,17 @@ export const ProductCard: React.FC<Props> = ({
    ingridients,
 }) => {
    return (
-      <div className={className}>
+      <div className={cn('max-lg:w-[400px] max-md:w-full', className)}>
          <Link href={`/product/${id}`}>
             <div
                className={
-                  'flex justify-center p-6 bg-secondary rounded-lg h-[260px]'
+                  'flex justify-center p-6 bg-secondary rounded-lg h-[260px]  '
                }
             >
                <img
                   src={imageUrl}
                   alt="logo"
-                  // className={'w-[125px] h-[125px]'}
+                  // className={'w-[225px] h-[225px]'}
                />
             </div>
 

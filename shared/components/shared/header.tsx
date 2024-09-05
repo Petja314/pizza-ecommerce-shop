@@ -52,23 +52,32 @@ export const Header: React.FC<Props> = ({
    }, []);
 
    return (
-      <header className={cn('border border-b', className)}>
+      <header className={cn('border border-b pl-5 pr-5', className)}>
          <Container className="flex items-center justify-between py-8">
             {/*Left side*/}
             <Link href={'/'}>
                <div className={'flex items-center gap-4'}>
                   <Image
+                     className={'max-sm:w-[30px] h-[30px]'}
                      src={'/logo.png'}
                      alt={'logo'}
                      width={35}
                      height={35}
                   />
                   <div>
-                     <h1 className={'text-2xl uppercase font-black'}>
-                        Next pizza
+                     <h1
+                        className={
+                           'text-2xl uppercase font-black max-sm:text-xl '
+                        }
+                     >
+                        Italian pizza
                      </h1>
-                     <p className={'text-sm text-gray-400 leading-3'}>
-                        вкусней уже некуда
+                     <p
+                        className={
+                           'text-sm text-gray-400 leading-3 max-sm:hidden'
+                        }
+                     >
+                        mm so yummy...
                      </p>
                   </div>
                </div>
@@ -76,13 +85,13 @@ export const Header: React.FC<Props> = ({
 
             {/*CENTER*/}
             {hasSearch && (
-               <div className={'mx-10 flex-1'}>
+               <div className={'mx-10 flex-1  max-md:hidden'}>
                   <SearchInput />
                </div>
             )}
 
             {/*RIGHT SIDE*/}
-            <div className={'flex items-center gap-3'}>
+            <div className={'flex items-center gap-3 max-sm:gap-1'}>
                <AuthModal
                   open={openAuthModal}
                   onClose={() => setOpenAuthModal(false)}

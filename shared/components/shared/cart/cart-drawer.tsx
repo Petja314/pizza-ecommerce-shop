@@ -6,6 +6,7 @@ import {
    Sheet,
    SheetClose,
    SheetContent,
+   SheetDescription,
    SheetFooter,
    SheetHeader,
    SheetTitle,
@@ -19,6 +20,7 @@ import { getCartItemsDetails } from '@/shared/lib';
 import { PizzaSize, PizzaType } from '@/shared/constants/pizza';
 import { cn } from '@/shared/lib/utils';
 import { useCart } from '@/shared/hooks';
+import { Label } from '@radix-ui/react-select';
 
 interface Props {
    className?: string;
@@ -44,23 +46,23 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
       const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
       updateItemQuantity(id, newQuantity);
    };
-
+   // max-sm:w-full
    return (
       <Sheet>
          <SheetTrigger asChild>{children}</SheetTrigger>
          <SheetContent
-            className={'flex flex-col justify-between pb-0 bg-[#F4F1EE]'}
+            className={'flex flex-col justify-between pb-0 bg-[#F4F1EE] w-full'}
          >
             <div
                className={cn(
-                  'flex flex-col h-full',
+                  'flex flex-col h-full ',
                   !totalAmount && 'justify-center'
                )}
             >
                {!totalAmount && (
                   <div
                      className={
-                        'flex flex-col items-center justify-center w-72 mx-auto'
+                        'flex flex-col items-center justify-center w-72 mx-auto '
                      }
                   >
                      <Image

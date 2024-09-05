@@ -6,12 +6,17 @@ import { Input } from '@/shared/components/ui/input';
 import { RangeSlider } from '@/shared/components/shared/range-slider';
 import { CheckboxFiltersGroups } from '@/shared/components/shared/checkbox-filters-groups';
 import { useFilters, useIngredients, useQueryFilters } from '@/shared/hooks';
+import { Sheet, SlidersHorizontal } from 'lucide-react';
+import { SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 interface Props {
    className?: string;
 }
 
-export const Filters: React.FC<Props> = ({ className }) => {
+export const Filters: React.FC<React.PropsWithChildren<Props>> = ({
+   className,
+   children,
+}) => {
    const { ingredients, loading } = useIngredients();
    const filters = useFilters();
    useQueryFilters(filters);
@@ -26,10 +31,13 @@ export const Filters: React.FC<Props> = ({ className }) => {
       filters.setPrices('pricesTo', prices[1]);
    };
 
-   // console.log('prices> ', filters.prices);
+   console.log('filters> ', filters);
    return (
       <div className={cn('', className)}>
-         <Title text={'Filtration'} className={'font-bold'}></Title>
+         <div className={'flex items-center gap-2 max-lg:cursor-pointer'}>
+            <SlidersHorizontal />
+            <Title text={'Filters'} className={'font-bold'}></Title>
+         </div>
 
          {/*TOP CHECKBOXES*/}
          <div className={'flex flex-col gap-4 mt-5'}>

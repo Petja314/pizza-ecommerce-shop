@@ -38,11 +38,17 @@ const ProductsGroupList: React.FC<Props> = ({
    }, [categoryId, intersection?.isIntersecting, title]);
 
    // console.log('items', items);
+   // max-md:text-lg
    return (
       <div className={className} id={title} ref={intersectionRef}>
-         <Title text={title} size={'lg'} className={'font-extrabold mb-5'} />
+         <Title text={title} size={'lg'} className={'font-extrabold mb-5 '} />
 
-         <div className={cn('grid grid-cols-3 gap-[50px]', listClassName)}>
+         <div
+            className={cn(
+               'grid grid-cols-3 gap-[50px] max-lg:flex flex-wrap  w-full  justify-center gap-[30px] max-md:w-full',
+               listClassName
+            )}
+         >
             {items.map((product, index) => (
                <ProductCard
                   key={index}

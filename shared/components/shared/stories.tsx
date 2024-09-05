@@ -33,31 +33,37 @@ export const Stories: React.FC<Props> = ({ className }) => {
       }
    };
 
+   const isSmallScreen = window.innerWidth <= 768;
+
+   const shownSkeleton = (value: number) => {
+      return [...Array(value)].map((_, index) => (
+         <div
+            key={index}
+            className=" w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse max-sm:w-[140px] max-sm:h-[190px] "
+         />
+      ));
+   };
+
    return (
-      <Container
-         className={cn(
-            'flex items-center justify-between gap-2 my-10',
-            className
-         )}
-      >
-         {stories.length === 0 &&
-            [...Array(6)].map((_, index) => (
-               <div
-                  key={index}
-                  className="w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse"
+      <Container className={'pl-5 pr-5'}>
+         <div
+            className={
+               'flex items-center justify-between my-10  overscroll-x-auto overflow-hidden '
+            }
+         >
+            {stories.length === 0 && isSmallScreen
+               ? shownSkeleton(3)
+               : shownSkeleton(6)}
+
+            {stories.map((story) => (
+               <img
+                  key={story.id}
+                  onClick={() => onClickStory(story)}
+                  className="pr-2 w-[200px] h-[250px] rounded-md cursor-pointer max-sm:w-[140px] max-sm:h-[190px]"
+                  src={story.previewImageUrl}
                />
             ))}
-
-         {stories.map((story) => (
-            <img
-               key={story.id}
-               onClick={() => onClickStory(story)}
-               className="rounded-md cursor-pointer"
-               height={250}
-               width={200}
-               src={story.previewImageUrl}
-            />
-         ))}
+         </div>
 
          {open && (
             <div className="absolute left-0 top-0 w-full h-full bg-black/80 flex items-center justify-center z-30">

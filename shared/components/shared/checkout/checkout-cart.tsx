@@ -26,7 +26,7 @@ export const CheckoutCart: React.FC<Props> = ({
    loading,
 }) => {
    return (
-      <div className={className}>
+      <div className={''}>
          <WhiteBlock title={'1. Basket'} endAdornment={''}>
             <div className={'flex flex-col gap-5'}>
                {loading &&

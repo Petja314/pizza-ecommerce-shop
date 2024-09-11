@@ -75,7 +75,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
       <>
          <div
             className={cn(
-               'max-lg:flex max-lg:flex-col items-center max-h-full scrollbar overflow-auto ',
+               'pr-2 pl-2 max-lg:flex max-lg:flex-col items-center max-h-full scrollbar overflow-auto ',
                isProductPage ? 'flex justify-between ' : 'flex flex-1'
             )}
          >

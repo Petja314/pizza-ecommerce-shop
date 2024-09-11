@@ -89,7 +89,7 @@ const CheckoutPage: React.FC<Props> = ({ className }) => {
    };
 
    return (
-      <Container className={'mt-10'}>
+      <Container className={'mt-10 pr-5 pl-5'}>
          <Title
             text={'Checkout'}
             className={'font-extrabold mb-8 text-[36px]'}
@@ -102,9 +102,9 @@ const CheckoutPage: React.FC<Props> = ({ className }) => {
 
          <FormProvider {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-               <div className={'flex gap-10'}>
+               <div className={'flex gap-10 max-sm:block'}>
                   {/*LEFT SIDE*/}
-                  <div className={'flex flex-col gap-10 flex-1 mb-20'}>
+                  <div className={'flex flex-col gap-10 flex-1 mb-10'}>
                      <CheckoutCart
                         className={cn(
                            loading ? 'opacity-70 pointer-events-none' : ''
@@ -116,6 +116,7 @@ const CheckoutPage: React.FC<Props> = ({ className }) => {
                      />
                      <CheckoutPersonalForm
                         className={cn(
+                           'max-sm:overflow-hidden',
                            loading ? 'opacity-70 pointer-events-none' : ''
                         )}
                      />
@@ -126,12 +127,19 @@ const CheckoutPage: React.FC<Props> = ({ className }) => {
                      />
                   </div>
                   {/*RIGHT SIDE*/}
-                  <div className={'w-[450px]'}>
+                  <div className={'w-[450px] max-lg:hidden'}>
                      <CheckoutSidebar
                         totalAmount={totalAmount}
                         loading={loading || submitting}
                      />
                   </div>
+               </div>
+
+               <div className={'lg:hidden lg:w-[100%]'}>
+                  <CheckoutSidebar
+                     totalAmount={totalAmount}
+                     loading={loading || submitting}
+                  />
                </div>
             </form>
          </FormProvider>

@@ -37,11 +37,15 @@ export const ChooseProductForm: React.FC<Props> = ({
    isProductPage,
 }) => {
    return (
-      <Container>
-         <div className={'flex flex-1 mt-10'}>
+      <>
+         <div
+            className={
+               'flex  max-lg:flex max-lg:flex-col items-center max-h-full justify-center overflow-hidden'
+            }
+         >
             <div
                className={cn(
-                  'flex items-center justify-center flex-1 relative w-full',
+                  'flex items-center justify-center relative w-full max-lg:',
                   className
                )}
             >
@@ -53,22 +57,31 @@ export const ChooseProductForm: React.FC<Props> = ({
                   )}
                />
             </div>
-            <div className={'w-[490px] bg-[#f7f6f5] p-7 border rounded-2xl'}>
+
+            <div
+               className={
+                  'w-[490px] bg-[#f7f6f5] p-7 border rounded-2xl max-lg:max-w-full'
+               }
+            >
                <Title
                   text={name}
                   size={'md'}
-                  className={'font-extrabold mb-1'}
+                  className={
+                     'font-extrabold mb-1 max-lg:flex max-lg:justify-center'
+                  }
                />
 
                <Button
-                  className={'mt-10 w-[100%] pt-2'}
+                  className={
+                     'mt-10 w-[100%] pt-2 max-lg:flex max-lg:justify-center'
+                  }
                   onClick={() => onSubmit()}
                   loading={loading}
                >
-                  Добавить в корзину за {price} £{' '}
+                  Add to basket for {price} £{' '}
                </Button>
             </div>
          </div>
-      </Container>
+      </>
    );
 };

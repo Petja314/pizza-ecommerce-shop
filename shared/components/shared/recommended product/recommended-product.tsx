@@ -18,14 +18,20 @@ const RecommendedProduct: React.FC<Props> = ({ className, product }) => {
       <Container className={'mb-20 '}>
          {/*<p className={'mt-10 text-gray-500'}>Product / {name}</p>*/}
 
-         <h1 className={'mt-10 mb-10 text-[31px] font-bold'}>Recommended</h1>
+         <h1
+            className={
+               'mt-10 mb-10 text-[31px] font-bold max-lg:flex max-lg:justify-center '
+            }
+         >
+            Recommended
+         </h1>
          <div className="scrollbar overflow-x-auto  ">
-            <div className="grid grid-flow-col auto-cols-max gap-3 justify-around">
+            <div className="grid grid-flow-col auto-cols-max gap-3 justify-around max-lg:flex max-lg:flex-col  max-lg:items-center max-md:p-5">
                {product?.category?.product.map((product) => (
                   <Link
                      href={`/product/${product.id}`}
                      key={product.id}
-                     // className="min-w-[calc(100%/4-16px)]"
+                     className="w-[400px] max-md:w-full "
                   >
                      <div className="flex justify-center p-6 bg-secondary rounded-lg h-[260px]">
                         <img src={product.imageUrl} alt="logo" />

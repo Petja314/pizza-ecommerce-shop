@@ -32,7 +32,9 @@ const ProductPage = async ({ params: { id } }: { params: { id: string } }) => {
 
    return (
       <Container className={''}>
-         <p className={'mt-10 text-gray-500'}>Product / {product.name}</p>
+         <p className={'pl-5 mt-10 mb-4 text-gray-500'}>
+            Product / {product.name}
+         </p>
 
          <ProductForm product={product} isProductPage={true} />
 

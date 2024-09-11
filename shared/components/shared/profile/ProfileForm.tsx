@@ -54,7 +54,7 @@ export const ProfileForm: React.FC<Props> = ({ className, data }) => {
    };
 
    return (
-      <Container className={'my-10'}>
+      <Container className={'my-10 pl-2 pr-2 flex items-center  flex-col '}>
          <Title
             text={'Personal information'}
             size={'md'}
@@ -63,7 +63,7 @@ export const ProfileForm: React.FC<Props> = ({ className, data }) => {
 
          <FormProvider {...form}>
             <form
-               className="flex flex-col gap-5 w-96 mt-10"
+               className="flex flex-col gap-5 w-96 mt-10 max-sm:w-[100%] "
                onSubmit={form.handleSubmit(onSubmit)}
             >
                <FormInput name="email" label="E-Mail" required />
@@ -94,7 +94,7 @@ export const ProfileForm: React.FC<Props> = ({ className, data }) => {
                   onClick={onClickSignOut}
                   variant="secondary"
                   disabled={form.formState.isSubmitting}
-                  className="text-base"
+                  className="text-base border border-primary"
                   type="button"
                >
                   Sign out

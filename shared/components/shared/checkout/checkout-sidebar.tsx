@@ -24,7 +24,7 @@ export const CheckoutSidebar: React.FC<Props> = ({
 
    return (
       <div className={className}>
-         <WhiteBlock className={'p-6 sticky'}>
+         <WhiteBlock className={'sticky mb-10 pb-3'}>
             <div className={'flex flex-col gap-1'}>
                <span className={'text-xl'}>Total price:</span>
 

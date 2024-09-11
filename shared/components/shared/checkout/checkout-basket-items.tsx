@@ -27,27 +27,28 @@ const CheckoutBasketItems: React.FC<Props> = ({
 }) => {
    return (
       <div
-         className={cn('flex items-center justify-between', {
-            'opacity-50 pinter-events-none': disabled,
+         className={cn('flex items-start justify-between max-sm:flex-col ', {
+            'opacity-50 pointer-events-none': disabled,
          })}
       >
-         <div className={'flex items-center gap-5 flex-1'}>
+         <div className={'flex items-start gap-5 flex-1 max-sm:items-center'}>
             <CartItemDetailsImage src={imageUrl} />
             <CartItemInfo name={name} details={details} />
          </div>
 
-         <CartItemDetailsPrice value={price} />
-
-         <div className={'flex items-center gap-5 ml-20'}>
+         <div
+            className={
+               'flex items-center gap-10 ml-20 max-sm:gap-1 max-lg:gap-10 max-lg:mt-4'
+            }
+         >
+            <CartItemDetailsPrice value={price} />
             <CartItemDetailsCountButton
                onClick={onClickCountButton}
                value={quantity}
             />
             <button type={'button'} onClick={onClickRemove}>
                <X
-                  className={
-                     'text-gray-400 cursor-pointer hover:text-gray-600 '
-                  }
+                  className={'text-gray-400 cursor-pointer hover:text-gray-600'}
                   size={20}
                />
             </button>

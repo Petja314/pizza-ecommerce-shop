@@ -28,6 +28,7 @@ export const Stories: React.FC<Props> = ({ className }) => {
    const onClickStory = (story: IStory) => {
       setSelectedStory(story);
 
+      console.log('story >', story);
       if (story.items.length > 0) {
          setOpen(true);
       }
@@ -44,6 +45,8 @@ export const Stories: React.FC<Props> = ({ className }) => {
       ));
    };
 
+   // console.log('isSmallScreen', isSmallScreen);
+   console.log('stories.length', stories.length);
    return (
       <Container className={'pl-5 pr-5'}>
          <div
@@ -51,9 +54,9 @@ export const Stories: React.FC<Props> = ({ className }) => {
                'flex items-center justify-between my-10  overscroll-x-auto overflow-hidden '
             }
          >
-            {stories.length === 0 && isSmallScreen
-               ? shownSkeleton(3)
-               : shownSkeleton(6)}
+            {/*{stories.length === 0 && isSmallScreen*/}
+            {/*   ? shownSkeleton(3)*/}
+            {/*   : shownSkeleton(6)}*/}
 
             {stories.map((story) => (
                <img

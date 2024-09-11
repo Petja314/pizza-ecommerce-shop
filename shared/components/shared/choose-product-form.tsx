@@ -40,7 +40,7 @@ export const ChooseProductForm: React.FC<Props> = ({
       <>
          <div
             className={
-               'flex  max-lg:flex max-lg:flex-col items-center max-h-full justify-center overflow-hidden'
+               'flex  flex-col items-center max-h-full justify-center overflow-hidden pb-10 max-lg:pb-0'
             }
          >
             <div

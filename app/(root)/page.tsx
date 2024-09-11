@@ -13,6 +13,7 @@ import { findPizzas } from '@/shared/lib';
 import { GetSearchParams } from '@/shared/lib/find-pizzas';
 import { Button } from '@/shared/components/ui';
 import { SlidersHorizontal } from 'lucide-react';
+import Image from 'next/image';
 
 export default async function Home({
    searchParams,

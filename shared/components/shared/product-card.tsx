@@ -6,6 +6,7 @@ import { Plus } from 'lucide-react';
 import { Product } from '.prisma/client';
 import { ProductWithRelations } from '@/@types/prisma';
 import { cn } from '@/shared/lib/utils';
+import Image from 'next/image';
 
 interface Props {
    id: number;

@@ -35,5 +35,9 @@ export async function GET(req: NextRequest) {
    } catch (err) {
       console.error(err);
       console.log('[CART_POST] Server error', err);
+      return NextResponse.json(
+         { error: 'Internal Server Error' },
+         { status: 500 }
+      );
    }
 }

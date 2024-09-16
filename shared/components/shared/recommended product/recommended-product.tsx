@@ -8,7 +8,7 @@ import { ProductCategory, ProductWithRelations } from '@/@types/prisma';
 interface Props {
    className?: string;
    // allProducts: ProductCategory[];
-   product: ProductWithRelations;
+   product: ProductWithRelations | any;
 }
 
 const RecommendedProduct: React.FC<Props> = ({ className, product }) => {
@@ -27,7 +27,7 @@ const RecommendedProduct: React.FC<Props> = ({ className, product }) => {
          </h1>
          <div className="scrollbar overflow-x-auto  ">
             <div className="grid grid-flow-col auto-cols-max gap-3 justify-around max-lg:flex max-lg:flex-col  max-lg:items-center max-md:p-5">
-               {product?.category?.product.map((product) => (
+               {product?.category?.product.map((product: any) => (
                   <Link
                      href={`/product/${product.id}`}
                      key={product.id}

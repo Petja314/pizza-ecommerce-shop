@@ -13,7 +13,7 @@ interface Props {
    onSubmit: VoidFunction;
    productId: any;
    loading: any;
-   isProductPage: boolean;
+   isProductPage?: boolean;
 }
 
 /**

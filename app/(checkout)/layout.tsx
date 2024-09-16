@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 import { Container, Header } from '@/shared/components/shared';
 
 export const metadata = {
@@ -9,11 +9,14 @@ export const metadata = {
 export default function CheckoutLayout({ children }: { children: ReactNode }) {
    return (
       <main lang="en" className="min-h-screen bg-[#F4F1EE]">
-         <Header
-            className={'border-gray-200 '}
-            hasSearch={false}
-            hasCartButton={false}
-         />
+         <Suspense>
+            <Header
+               className={'border-gray-200 '}
+               hasSearch={false}
+               hasCartButton={false}
+            />
+         </Suspense>
+
          <Container>{children}</Container>
       </main>
    );

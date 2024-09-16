@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container, Title } from '@/shared/components/shared';
 import { Button } from '@/shared/components/ui';
 import { useCart } from '@/shared/hooks';
@@ -17,17 +17,10 @@ import {
    TCheckoutFormValuesSchema,
 } from '@/shared/components/shared/checkout/schemas/checkout-form-schema';
 import { cn } from '@/shared/lib/utils';
-import { loadStripe } from '@stripe/stripe-js';
-import CheckoutStripeForm from '@/shared/components/shared/checkout/stripe/checkout-stripe-form';
-import { Elements } from '@stripe/react-stripe-js';
 import { createOrder } from '@/app/actions';
 import toast from 'react-hot-toast';
 
-interface Props {
-   className?: string;
-}
-
-const CheckoutPage: React.FC<Props> = ({ className }) => {
+const CheckoutPage = () => {
    const [submitting, setSubmitting] = React.useState(false);
 
    const {

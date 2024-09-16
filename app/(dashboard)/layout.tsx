@@ -8,7 +8,6 @@ export const metadata = {
 export default function DashboardLayout({ children }: { children: ReactNode }) {
    return (
       <html lang="en">
-         DASHBOARD HEADER
          <body>{children}</body>
       </html>
    );

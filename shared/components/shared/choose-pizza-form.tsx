@@ -25,7 +25,7 @@ interface Props {
    productId: number;
    onSubmit: (variationsId: number, ingiridients: number[]) => void;
    loading: any;
-   isProductPage: boolean;
+   isProductPage?: boolean;
 }
 
 /**

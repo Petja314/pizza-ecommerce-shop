@@ -9,7 +9,7 @@ import { ProductForm } from '@/shared/components/shared';
 interface Props {
    product: ProductWithRelations;
    className?: string;
-   isProductPage: boolean; //not exist
+   isProductPage?: boolean; //not exist
 }
 
 export const ChooseProductModal: React.FC<Props> = ({

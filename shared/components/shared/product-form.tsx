@@ -8,13 +8,12 @@ import toast from 'react-hot-toast';
 
 interface Props {
    className?: string;
-   product: ProductWithRelations;
+   product: ProductWithRelations | any;
    onSubmit?: () => void;
-   isProductPage: boolean;
+   isProductPage?: boolean;
 }
 
 export const ProductForm: React.FC<Props> = ({
-   className,
    product,
    onSubmit: _onSubmit,
    isProductPage,

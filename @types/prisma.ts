@@ -1,5 +1,4 @@
 import { Ingridient, Product, Variations } from '.prisma/client';
-import { ProductCategory } from '@/shared/components/shared/product-form';
 
 export type ProductWithRelations = Product & {
    variations: Variations[];

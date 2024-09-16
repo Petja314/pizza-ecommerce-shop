@@ -26,11 +26,12 @@ export const ProductCard: React.FC<Props> = ({
    ingridients,
 }) => {
    return (
-      <div className={cn('max-lg:w-[400px] max-md:w-full', className)}>
+      <div className={cn('max-md:w-full', className)}>
          <Link href={`/product/${id}`}>
             <div
                className={
-                  'flex justify-center p-6 bg-secondary rounded-lg h-[260px]  '
+                  'flex justify-center p-6 bg-secondary rounded-lg'
+                  // 'flex justify-center p-6 bg-secondary rounded-lg h-[260px]  '
                }
             >
                <img

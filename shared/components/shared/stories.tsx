@@ -51,7 +51,7 @@ export const Stories: React.FC<Props> = ({ className }) => {
       <Container className={'pl-5 pr-5'}>
          <div
             className={
-               'flex items-center justify-between my-10  overscroll-x-auto overflow-hidden '
+               'flex items-center justify-between my-10  overflow-x-auto overflow-hidden '
             }
          >
             {/*{stories.length === 0 && isSmallScreen*/}
